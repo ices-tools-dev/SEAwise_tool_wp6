@@ -2,4 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-data/
+data/*.rda
+data/*.RData
+data-raw/*.rda
+data-raw/*.RData
