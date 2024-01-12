@@ -10,7 +10,14 @@ Description: Displays the results of WP6 - Evaluation of fisheries management st
 License: MIT
 Imports: 
     config (>= 0.3.2),
+    ggplot2,
+    ggthemes,
     golem (>= 0.4.1),
+    openxlsx,
+    pals,
+    R.utils,
+    RColorBrewer,
+    scales,
     shiny (>= 1.8.0)
 Encoding: UTF-8
 LazyData: true

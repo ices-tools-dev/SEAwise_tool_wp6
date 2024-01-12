@@ -18,17 +18,6 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # OSMOSE is not included because is not able to simulate current management. 
 
-library(openxlsx)
-library(tidyverse)
-library(R.utils)
-library(pals)
-library(ggplot2)
-library(RColorBrewer)
-library(ggthemes)
-library(scales) # for the color palette, to be centered in 0 and choose the colors in the bounds
-
-
-
 
 #### SSB ----
 
