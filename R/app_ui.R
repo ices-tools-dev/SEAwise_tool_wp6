@@ -10,7 +10,29 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     fluidPage(
-      h1("SEAwise.tool.wp6")
+      h1("SEAwise.tool.wp6"),
+      shiny::selectInput(inputId = "mse_plot_id",
+                         label = "Select plot for display", 
+                         choices = c("Change in SSB" = "SSB",
+                                     "F/Fmsy" = "F_ratio",
+                                     "Change in\n average age" = "mean_age",
+                                     "p(SSB < Blim)" = "ssb_blim",
+                                     "Change in Fleet Landings" = "fleet_landings",
+                                     "Change in value of Fleet Landings" = "fleet_landings_value",
+                                     "Change in Stock Landings" = "stock_landings",
+                                     "Change in value of Stock Landings" = "stock_landings_value")
+                          ),
+      shiny::selectInput(inputId = "mse_ecoregion",
+                         label = "Select ecoregion", 
+                         choices = c("All Ecoregions" = "all_ecoregions", 
+                                     "GNS",
+                                     "CS",
+                                     "WW",
+                                     "Med"), 
+                         selected = "all_ecoregions"
+                         
+                          ),
+      shiny::plotOutput("plot")
     )
   )
 }

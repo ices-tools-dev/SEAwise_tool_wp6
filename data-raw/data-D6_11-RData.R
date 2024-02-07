@@ -1,4 +1,4 @@
-## code to prepare `data/D6_11_catch.RData` dataset goes here
+## code to prepare `data/` datasets goes here
 
 load("data-raw/D6_11_catch.RData")
 load("data-raw/D6_11_stock.RData")
@@ -39,9 +39,96 @@ tab_stock <- tab_stock %>% bind_cols(tab_stock_land[,-(1:4)]) %>% tidyr::pivot_l
   mutate(value_trunc = ifelse(value > 100,100, value))
 
 
+
+mse_plot_params <- list(
+        SSB = list(y = "stock",
+                        var = "ratio_ssb_trunc",
+                        col = list(low = "darkblue",
+                                   mid = "white",
+                                   high = "darkred"),
+                        midpoint = 0,
+                        title = "Change\n in SSB",
+                        lims = c(-100,100),
+                        breaks = seq(-100, 100, 50),
+                        y_lab = "Stock"),
+        F_ratio = list(y = "stock",
+                        var = "ratio_f_fmsy_trunc",
+                        col = list(low = "darkblue",
+                                   mid = "white",
+                                   high = "darkred"),
+                        midpoint = 0,
+                        title = "F/Fmsy",
+                        lims = c(-100,100),
+                        breaks = seq(-100, 100, 50),
+                        y_lab = "Stock"),
+        mean_age = list(y = "stock",
+                        var = "ratio_average_age_trunc",
+                        col = list(low = "darkblue",
+                                   mid = "white",
+                                   high = "darkred"),
+                        midpoint = 0,
+                        title = "Change in\n average age",
+                        lims = c(-100,100),
+                        breaks = seq(-100, 100, 50),
+                        y_lab = "Stock"),
+        ssb_blim = list(y = "stock",
+                        var = "pBlim",
+                        col = list(low = "darkblue",
+                                   mid = "white",
+                                   high = "darkred"),
+                        midpoint = 5,
+                        title = "p(SSB < Blim)",
+                        lims = c(0,100),
+                        breaks = seq(0, 100, 25),
+                        y_lab = "Stock"),
+  fleet_landings = list(y = "fleet",
+                        var = "ratio_landings_trunc",
+                        col = list(low = "white",
+                                   mid = "darkblue",
+                                   high = "darkgreen"),
+                        midpoint = 50,
+                        title = "Change\n in Landings",
+                        lims = c(0,100),
+                        breaks = seq(0, 100, 25),
+                        y_lab = "Fleet"),
+  fleet_landings_value = list(y = "fleet",
+                        var = "ratio_value_trunc",
+                        col = list(low = "white",
+                                   mid = "darkblue",
+                                   high = "darkgreen"),
+                        midpoint = 50,
+                        title = "Change\n in Landings",
+                        lims = c(0,100),
+                        breaks = seq(0, 100, 25),
+                        y_lab = "Fleet"),
+  stock_landings = list(y = "stock",
+                        var = "ratio_landings_trunc",
+                        col = list(low = "white",
+                                   mid = "darkblue",
+                                   high = "darkgreen"),
+                        midpoint = 50,
+                        title = "Change\n in Landings",
+                        lims = c(0,100),
+                        breaks = seq(0, 100, 25),
+                        y_lab = "Stock"),
+  stock_landings_value = list(y = "stock",
+                        var = "ratio_value_trunc",
+                        col = list(low = "white",
+                                   mid = "darkblue",
+                                   high = "darkgreen"),
+                        midpoint = 50,
+                        title = "Change\n in Landings",
+                        lims = c(0,100),
+                        breaks = seq(0, 100, 25),
+                        y_lab = "Stock")
+)
+
+
+
 usethis::use_data(stock, overwrite = T)
 usethis::use_data(catch, overwrite = T)
 usethis::use_data(tab_stock, overwrite = T)
 usethis::use_data(tab_stock_land, overwrite = T)
 usethis::use_data(total_landings_fleet, overwrite = T)
 usethis::use_data(total_landings_stock, overwrite = T)
+usethis::use_data(mse_plot_params, overwrite = T)
