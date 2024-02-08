@@ -6,11 +6,17 @@
 #' @noRd
 app_ui <- function(request) {
   tagList(
-    # Leave this function for adding external resources
     golem_add_external_resources(),
-    # Your application UI logic
-    fluidPage(
-      h1("SEAwise.tool.wp6"),
+
+    navbarPage(
+      position = "static-top",
+      collapsible = TRUE,
+      windowTitle = "SEAwise",
+      id = "tabset",
+      fluid = TRUE,
+      title = span(tags$img(src ="www/PRIMARY_SeaWiseLOGO_Full Colour.png",
+                            style = "padding-right:10px;padding-bottom:10px; padding-top:0px; margin-top: -10px",
+                            height = "50px"), "Management Strategy Evaluation"),
       shiny::sidebarLayout(
         sidebarPanel = shiny::sidebarPanel(width = 2,
           shiny::selectInput(inputId = "mse_plot_id",
@@ -54,13 +60,17 @@ golem_add_external_resources <- function() {
   add_resource_path(
     "www",
     app_sys("app/www")
+  ) 
+  add_resource_path(
+    "img",
+    app_sys("app/img")
   )
 
   tags$head(
-    favicon(),
+    favicon(ext = "png"),
     bundle_resources(
       path = app_sys("app/www"),
-      app_title = "SEAwise.tool.wp6"
+      app_title = "SEAwise"
     )
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert()
