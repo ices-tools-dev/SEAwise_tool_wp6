@@ -160,7 +160,7 @@ plot_mse_generic <- function(df, input, list_params, ecoregion) {
     facet_wrap(fleet_dynamics~HCR) 
   
   if(ecoregion == "all_ecoregions") {
-    plot + geom_hline(yintercept = c(5, 29,37,42,47)+0.5, col = 'red', linewidth = 2.8)
+    plot <- plot + geom_hline(yintercept = plot_params$hline + 0.5, col = 'red', linewidth = 0.8)
   }
   plot
 }
