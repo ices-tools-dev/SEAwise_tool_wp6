@@ -140,7 +140,7 @@ plot_mse_generic <- function(df, input, list_params, ecoregion) {
   data <- df %>% filter(period != '2021')#, !(stock_name %in% constant_cpue))
   
   if(ecoregion != "all_ecoregions") {
-    data <- filter(data, case_study == ecoregion)
+    data <- filter(data, region == ecoregion)
   }
   
   plot <- ggplot(data, aes(x = period, y = !!sym(plot_params$y),  fill = !!sym(plot_params$var))) +
@@ -157,10 +157,10 @@ plot_mse_generic <- function(df, input, list_params, ecoregion) {
     theme(axis.text.x = element_text(angle=45,  hjust = 1)) + 
     xlab('Period') + 
     ylab(plot_params$y_lab) + 
-    facet_wrap(fleet_dynamics~HCR, ncol = 4) 
+    facet_wrap(fleet_dynamics~HCR) 
   
   if(ecoregion == "all_ecoregions") {
-    plot + geom_hline(yintercept = c(5, 29,37,42,47)+0.5, col = 'red', linewidth = 0.8)
+    plot + geom_hline(yintercept = c(5, 29,37,42,47)+0.5, col = 'red', linewidth = 2.8)
   }
   plot
 }
