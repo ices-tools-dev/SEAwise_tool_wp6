@@ -19,6 +19,15 @@ app_ui <- function(request) {
                             height = "50px"), "Management Strategy Evaluation"),
       shiny::sidebarLayout(
         sidebarPanel = shiny::sidebarPanel(width = 2,
+          shiny::selectInput(inputId = "mse_ecoregion",
+                             label = "Select ecoregion", 
+                             choices = c("All Ecoregions" = "all_ecoregions", 
+                                         "Greater North Sea" = "North Sea",
+                                         "Celtic Sea",
+                                         "Bay of Biscay", 
+                                         "Baltic Sea",
+                                         "Central Mediterranean", "Eastern Mediterranean"), 
+                             selected = "all_ecoregions"),
           shiny::selectInput(inputId = "mse_plot_id",
                              label = "Select plot for display", 
                              choices = c("Change in SSB" = "SSB",
@@ -28,18 +37,7 @@ app_ui <- function(request) {
                                          "Change in Fleet Landings" = "fleet_landings",
                                          "Change in value of Fleet Landings" = "fleet_landings_value",
                                          "Change in Stock Landings" = "stock_landings",
-                                         "Change in value of Stock Landings" = "stock_landings_value")
-                              ),
-          shiny::selectInput(inputId = "mse_ecoregion",
-                             label = "Select ecoregion", 
-                             choices = c("All Ecoregions" = "all_ecoregions", 
-                                         "Greater North Sea" = "North Sea",
-                                         "Celtic Sea",
-                                         "Bay of Biscay", 
-                                         "Baltic Sea",
-                                         "Central Mediterranean", "Eastern Mediterranean"), 
-                             selected = "all_ecoregions"
-                             )),
+                                         "Change in value of Stock Landings" = "stock_landings_value"))),
         shiny::mainPanel(
           shiny::plotOutput("plot", height = "1200px")
         )
