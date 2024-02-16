@@ -132,6 +132,9 @@ mse_plot_params <- list(
 )
 
 
+constant_cpue <- c("NEP", "POL", "RJC", "RJN", "RJU", "SDV", "MUR", "NEP10",       
+                   "NEP32", "NEP33",  "NEP34",  "NEP5", "NEP6", "NEP7", 
+                   "NEP8", "NEP9",  "NEPOTH-NS", "WHG", "OTR", "DPS")
 
 usethis::use_data(stock, overwrite = T)
 usethis::use_data(catch, overwrite = T)
@@ -140,3 +143,4 @@ usethis::use_data(tab_stock_land, overwrite = T)
 usethis::use_data(total_landings_fleet, overwrite = T)
 usethis::use_data(total_landings_stock, overwrite = T)
 usethis::use_data(mse_plot_params, overwrite = T)
+usethis::use_data(constant_cpue, overwrite = T)

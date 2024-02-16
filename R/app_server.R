@@ -11,7 +11,8 @@ app_server <- function(input, output, session) {
     
     if (input$mse_plot_id %in% c("SSB", "F_ratio", "mean_age", "ssb_blim")) {
       
-      plot_mse_generic(df = stock, input = input$mse_plot_id, list_params = mse_plot_params, input$mse_ecoregion)
+      filtered_stocks <- stock %>% dplyr::filter(!stock_name %in% constant_cpue)
+      plot_mse_generic(df = filtered_stocks, input = input$mse_plot_id, list_params = mse_plot_params, input$mse_ecoregion)
       
     } else if (input$mse_plot_id %in% c("fleet_landings", "fleet_landings_value")) {
       
