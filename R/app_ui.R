@@ -3,12 +3,14 @@
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @importFrom bslib card card_body card_header
 #' @noRd
 app_ui <- function(request) {
   tagList(
     golem_add_external_resources(),
 
     navbarPage(
+      theme = seawise_theme,
       position = "static-top",
       collapsible = TRUE,
       windowTitle = "SEAwise",
@@ -39,7 +41,8 @@ app_ui <- function(request) {
                                          "Change in Stock Landings" = "stock_landings",
                                          "Change in value of Stock Landings" = "stock_landings_value"))),
         shiny::mainPanel(
-          shiny::plotOutput("plot", height = "1200px")
+          card(full_screen = T, 
+            card_body(plotOutput("plot", height = "900px"), max_height_full_screen =  "100%", fill = T, )) 
         )
       )
     )
