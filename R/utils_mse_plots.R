@@ -118,7 +118,7 @@ plot_mse_stock_landings <- function(df) {
 }
 
 
-#' Title
+#' Generic function to plot changes in mse indicators
 #'
 #' @param df 
 #' @param input 
@@ -132,7 +132,6 @@ plot_mse_stock_landings <- function(df) {
 #' @importFrom ggthemes theme_hc
 #' @import ggplot2
 #'
-#' @examples
 plot_mse_generic <- function(df, input, list_params, ecoregion) {
   #browser()
   plot_params <- list_params[[input]]
@@ -164,4 +163,40 @@ plot_mse_generic <- function(df, input, list_params, ecoregion) {
   }
   plot
 }
+
+
+
+
+#' Plot regional level changes in indicators
+#'
+#' @param df 
+#'
+#' @return
+#' 
+#' @export
+#' @importFrom magrittr  %>% 
+#' @importFrom dplyr filter
+#' @importFrom ggthemes theme_hc
+#' @import ggplot
+#'
+
+plot_mse_indicators_regional <- function(df) {
+  
+  ggplot(df, aes(x = period, y = substr(indicator,7, nchar(indicator)),  fill = value_trunc)) +
+    geom_tile(color = "white", lwd = 1.5, linetype = 1)  +
+    scale_fill_gradient2(
+      low = 'darkred',# muted("red"),
+      mid = "white",
+      high = 'darkblue' , #muted("blue"),
+      midpoint = 0, name = "Change\n in indicator",
+      limits = c(-100,100), breaks = seq(-100, 100, 50)
+    ) +
+    theme_hc() +  
+    theme(axis.text.x = element_text(angle=45,  hjust = 1)) + 
+    geom_text(aes(label = round(value_trunc), color = abs(value_trunc) > 60)) +
+    scale_color_manual(guide = 'none', values = c("black", "white")) +
+    xlab('Period') + ylab('Indicator')  + facet_grid(region ~ fleet_dynamics*HCR)
+}
+
+
 

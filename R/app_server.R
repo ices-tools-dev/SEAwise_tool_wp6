@@ -22,6 +22,10 @@ app_server <- function(input, output, session) {
       
       plot_mse_generic(df = total_landings_stock, input = input$mse_plot_id, list_params = mse_plot_params, input$mse_ecoregion)
       
+    } else if (input$mse_plot_id == "regional_change") {
+      
+      plot_mse_indicators_regional(df = tab_stock)
+      
     }
     
   })
